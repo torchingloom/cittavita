@@ -4,7 +4,7 @@ import Image
 from django.db import models
 from sorl.thumbnail.shortcuts import get_thumbnail
 from cittavita.shop import item_image_border_filename_generate, item_image_filename_generate
-
+from django.contrib.auth.models import User
 
 class Item(models.Model):
     class Meta:
@@ -66,7 +66,7 @@ class Item_Image_Border(models.Model):
 
 
 class Item_Image(models.Model):
-    item = models.ForeignKey(Item, null=False, on_delete=models.CASCADE)
+    item = models.ForeignKey(Item, null=False, on_delete=models.CASCADE, verbose_name=u'товар')
     thumb_width = models.PositiveIntegerField(null=True, blank=True, verbose_name=u'ширина превьюшки')
     thumb_height = models.PositiveIntegerField(null=True, blank=True, verbose_name=u'высота превьюшки')
     border = models.ForeignKey(Item_Image_Border, blank=True, null=True, on_delete=models.SET_NULL)
@@ -90,4 +90,26 @@ class Item_Image(models.Model):
         verbose_name_plural = u'картинки товара'
 
 
+class Basket(models.Model):
+    item = models.ForeignKey(Item, null=False, on_delete=models.CASCADE, verbose_name=u'товар')
+    count = models.IntegerField(default=1, verbose_name=u'сколько штук')
+    price_one = models.FloatField(verbose_name=u'цена')
+    when = models.DateTimeField(auto_now=True, auto_now_add=True, db_index=True, verbose_name=u'когда')
+    class Meta:
+        abstract = True
 
+
+class Basket_Anonimous(Basket):
+    session_id = models.CharField(max_length=500, db_index=True, verbose_name=u'идентификатор сессии')
+    class Meta:
+        unique_together = ['item', 'session_id']
+        verbose_name = u'корзина неавторизованного'
+        verbose_name_plural = u'корзины неавторизованных'
+
+
+class Basket_User(Basket):
+    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE, verbose_name=u'пользователь')
+    class Meta:
+        unique_together = ['item', 'user']
+        verbose_name = u'корзина авторизованного'
+        verbose_name_plural = u'корзины авторизованных'

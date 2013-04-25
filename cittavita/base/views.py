@@ -5,8 +5,7 @@ from ..shop import models as shop_models
 
 
 class HomeView(TemplateView):
-    template_name = '../templates/home.html'
-
+    template_name = 'home.html'
     def get_context_data(self, **kwargs):
         shelf_width = 896 * 2
         shelfs = ()
@@ -33,14 +32,3 @@ class HomeView(TemplateView):
 class PageView(DetailView):
     model = StaticPage
     template_name = '../templates/page/view.html'
-
-
-class TestEmail(TemplateView):
-    template_name = '../templates/index.html'
-
-    def get_context_data(self, **kwargs):
-        from django.contrib.auth.models import User
-        from helper.mail import ToUsers
-        from django.db.models.query_utils import Q
-        m = ToUsers(User.objects.filter(Q(id=1) | Q(id=8)), 'test')
-        m.send()

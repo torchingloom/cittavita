@@ -99,9 +99,8 @@ SECRET_KEY = 'unx-y!r=68#4^2)2=1!zsv9puftjq_8*gfm6=ok*_%=r#cn(b!(l(u%9ndwiedjis=
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    # 'django.template.loaders.eggs.Loader',
 )
-
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -110,9 +109,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    '%s.base.middleware.request.RequestMiddleware' % PROJECT_NAME,
 )
+
 
 ROOT_URLCONF = '%s.urls' % PROJECT_DIR.replace('\\', '/').split('/').pop()
 
@@ -121,9 +122,7 @@ ROOT_URLCONF = '%s.urls' % PROJECT_DIR.replace('\\', '/').split('/').pop()
 WSGI_APPLICATION = '%s.wsgi.application' % PROJECT_DIR.replace('\\', '/').split('/').pop()
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_DIR, PROJECT_NAME, 'templates'),
-    os.path.join(PROJECT_DIR, PROJECT_NAME, 'shop', 'templates'),
-    os.path.join(PROJECT_DIR, PROJECT_NAME, 'base', 'templates'),
+    # os.path.join(PROJECT_DIR, PROJECT_NAME, 'templates'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -141,10 +140,11 @@ INSTALLED_APPS = (
     'django_extensions',
     'debug_toolbar',
     'south',
-    # 'shop',
+    'registration',
     'pure_pagination',
     'sorl.thumbnail',
     'django_pickling',
+    '%s.account' % PROJECT_NAME,
     '%s.base' % PROJECT_NAME,
     '%s.shop' % PROJECT_NAME,
 )
