@@ -1,0 +1,16 @@
+psycopg2
+django
+south
+message
+utils
+django-compressor
+django-utils
+django-debug-toolbar
+django-registration
+django-staticfiles
+django-extra-views
+sorl-thumbnail
+django-pure-pagination
+python-dateutil
+wadofstuff-django-serializers
+django-extensions
