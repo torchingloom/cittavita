@@ -1,0 +1,44 @@
+BODY {
+	/*filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true', src='img/bg-2.jpg', sizingMethod='scale');*/
+}
+
+#main:after {
+	content: '';
+	height: 0%;
+	display: table;
+}
+
+.class {
+	behavior: url('css/pie.htc');
+}
+
+.png-fix {
+	-pie-png-fix: true;
+}
+
+.after-fix {
+	zoom:expression(
+		runtimeStyle.zoom = 1,
+		insertAdjacentHTML('beforeEnd', '<ins class="after"></ins>')
+	);
+}
+
+.before-fix {
+	zoom:expression(
+		runtimeStyle.zoom = 1,
+		insertAdjacentHTML('afterBegin', '<ins class="before"></ins>')
+	);
+}
+
+.after-before-fix {
+	zoom:expression(
+		runtimeStyle.zoom = 1,
+		insertAdjacentHTML('afterBegin', '<ins class="before"></ins>'),
+		insertAdjacentHTML('beforeEnd', '<ins class="after"></ins>')
+	);
+}
+
+* html BODY {
+	width: expression(document.documentElement.clientWidth > 1001? '100%' : '1000px');
+	height: expression(document.documentElement.clientHeight > 769? '100%' : '768px');
+}

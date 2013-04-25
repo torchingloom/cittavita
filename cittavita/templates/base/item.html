@@ -1,0 +1,66 @@
+{% load basket_tags %}
+<div class="popupinner">
+
+{% if object.item_image_set.all %}
+
+    <div class="item_image">
+
+    {% for img in object.item_image_set.all %}
+
+        <span><img src="{{ img.get_detail_thumb.url }}" alt="" /></span>
+
+    {% endfor %}
+
+    </div>
+
+{% endif %}
+
+	<div class="item_description">
+		<div class="item_neme_and_price">
+			<h1>{{ object.name }}</h1>
+			<h2 class="price">{{ object.price }} рублей</h2>
+			{% if object.price_old and object.price_old != object.price %}<h2 class="price_old">{{ object.price_old }} рублей</h2>{% endif %}
+		</div>
+
+{% if object.info %}
+
+        <dl><dd class="desc">{{ object.info }}</dd></dl>
+
+{% endif %}
+
+        {% add_basket_button object 'Купить' 'Товар добавлен в корзину' 'Товар добавлен в корзину' %}
+
+	</div>
+
+{% if object.item_image_set.all %}
+
+	<div class="item_thumbs">
+		<div class="item_thumbs_wrap">
+			<ul>
+
+    {% for img in object.item_image_set.all %}
+
+                <li><a href="#"><img src="{{ img.get_detail_list_thumb.url }}" alt="" /></a></li>
+
+    {% endfor %}
+
+			</ul>
+		</div>
+
+		<a href="#" class="prev">&larr;</a>
+		<a href="#" class="next">&rarr;</a>
+	</div>
+
+{% endif %}
+
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	
+	
+	//console.log();
+});
+//]]>
+</script>

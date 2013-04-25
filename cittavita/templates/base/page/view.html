@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="static-page">
+	<div class="subnav">
+	    <ul class="nav nav-pills">
+				<li><a href="/base/page/about_student">Учащемуся</a></li>
+				<li><a href="/base/page/about_project">О проекте</a></li>
+				<li><a href="/base/page/about_school">Школам</a></li>
+				<li><a href="/base/page/about_highschool">Вузам</a></li>
+				<li><a href="/base/page/about_customer">Социальным заказчикам</a></li>
+				<li><a href="/base/page/about_resources">О ресурсах</a></li>
+	    </ul>
+	</div>
+
+	<div class="hero-unit">
+		<h1>{{ object.title }}</h1>
+		<!-- todo почему-то рисует не < & > а &lt; & &gt; -->
+		<p>{{ object.content|safe }}</p>
+	</div>
+
+
+</div>
+{% endblock %}
+
+{% block top_menu %}
+{% endblock %}
+
+
+
+

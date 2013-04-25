@@ -1,0 +1,13 @@
+<ul class="nav">
+{% for item in items %}
+    {% if item.separator %}
+<li class="divider-vertical"></li>
+    {% else %}
+        {% if item.disabled %}
+<li сlass="disabled"><span class="pseudo">{{ item.title }}</span></li>
+        {% else %}
+<li><a href="{{ item.url }}">{{ item.title }}</a></li>
+        {% endif %}
+    {% endif %}
+{% endfor %}
+</ul>

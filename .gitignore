@@ -1,6 +1,6 @@
 .idea
 /build
-public/media
+public/media/cache
 public/static/admin
 public/static/django_extensions
 *.pyc

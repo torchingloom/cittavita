@@ -1,0 +1,17 @@
+{% extends "account/profile-view.html" %}
+
+{% block profile-top-controlbar %}{% endblock %}
+
+{% block profile-content %}
+    <form action="{% url profile-edit %}" method="post" enctype="multipart/form-data">
+   		{% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-inlines">
+		{% for inline in inlines %}
+            <div class="form-inline">{{ inline.as_p }}</div>
+		{% endfor %}
+        </div>
+        <input type="submit" class="btn submit" value="Отправить" />
+        <input type="button" class="btn button" value="Отмена" onclick="document.location.href = '{% url profile-view-self %}'" />
+    </form>
+{% endblock %}
