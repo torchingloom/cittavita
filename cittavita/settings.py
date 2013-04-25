@@ -118,7 +118,6 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = '%s.urls' % PROJECT_DIR.replace('\\', '/').split('/').pop()
 
 # Python dotted path to the WSGI application used by Django's runserver.
-# WSGI_APPLICATION = 'kismarket.wsgi.application'
 WSGI_APPLICATION = '%s.wsgi.application' % PROJECT_DIR.replace('\\', '/').split('/').pop()
 
 TEMPLATE_DIRS = (
