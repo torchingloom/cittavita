@@ -3,18 +3,18 @@ from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
-from cittavita.base import views as base_views
+from cittavita.base.views import HomeView
+from cittavita.shop.views import ItemView
 from django.contrib.auth.urls import urlpatterns
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 admin.autodiscover()
 
 urlpatterns += patterns('',
-    # url(r'^$', base_views.IndexPageView.as_view(), name='index-view'),
-    # url(r'item/(?P<pk>\d+)$', base_views.ItemView.as_view(), name='item-view'),
+    url(r'^$', HomeView.as_view(), name='home-view'),
+    url(r'item/(?P<pk>\d+)$', ItemView.as_view(), name='item-view'),
     (r'^admin/', include(admin.site.urls)),
-    # (r'^base/', include('cittavita.base.urls')),
-    # (r'^basket/', include('basket.urls'))
+    (r'^shop/', include('shop.urls'))
 )
 
 urlpatterns += staticfiles_urlpatterns()

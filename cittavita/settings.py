@@ -122,6 +122,8 @@ WSGI_APPLICATION = '%s.wsgi.application' % PROJECT_DIR.replace('\\', '/').split(
 
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIR, PROJECT_NAME, 'templates'),
+    os.path.join(PROJECT_DIR, PROJECT_NAME, 'shop', 'templates'),
+    os.path.join(PROJECT_DIR, PROJECT_NAME, 'base', 'templates'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -139,6 +141,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'debug_toolbar',
     'south',
+    # 'shop',
     'pure_pagination',
     'sorl.thumbnail',
     'django_pickling',
@@ -214,4 +217,3 @@ DEBUG_TOOLBAR_CONFIG = {
     'TAG': 'div',
     'ENABLE_STACKTRACES' : True
 }
-

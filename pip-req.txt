@@ -1,6 +1,7 @@
 django
 south
 message
+django-basket
 django-compressor
 django-utils
 django-debug-toolbar
@@ -12,3 +13,4 @@ django-pure-pagination
 python-dateutil
 wadofstuff-django-serializers
 django-extensions
+django-shop

@@ -1,4 +1,3 @@
-{% load basket_tags %}
 <div class="popupinner">
 
 {% if object.item_image_set.all %}
@@ -27,8 +26,6 @@
         <dl><dd class="desc">{{ object.info }}</dd></dl>
 
 {% endif %}
-
-        {% add_basket_button object 'Купить' 'Товар добавлен в корзину' 'Товар добавлен в корзину' %}
 
 	</div>
 
