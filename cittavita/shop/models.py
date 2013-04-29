@@ -6,6 +6,7 @@ from sorl.thumbnail.shortcuts import get_thumbnail
 from cittavita.shop import item_image_border_filename_generate, item_image_filename_generate
 from django.contrib.auth.models import User
 
+
 class Item(models.Model):
     class Meta:
         verbose_name = u'товар'
@@ -99,7 +100,7 @@ class Basket(models.Model):
         abstract = True
 
 
-class Basket_Anonimous(Basket):
+class Basket_Anonymous(Basket):
     session_id = models.CharField(max_length=500, db_index=True, verbose_name=u'идентификатор сессии')
     class Meta:
         unique_together = ['item', 'session_id']

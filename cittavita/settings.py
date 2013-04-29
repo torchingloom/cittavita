@@ -143,7 +143,6 @@ INSTALLED_APPS = (
     'pure_pagination',
     'sorl.thumbnail',
     'django_pickling',
-    '%s.account' % PROJECT_NAME,
     '%s.base' % PROJECT_NAME,
     '%s.shop' % PROJECT_NAME,
 )

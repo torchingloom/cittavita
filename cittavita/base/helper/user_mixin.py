@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from ...shop.helper.basket import Basket
 
 class UserMixin(object):
     def is_admin(self):
@@ -10,6 +11,8 @@ class UserMixin(object):
         return bool(self.groups.filter(name='members'))
     def display_name(self):
         return u'%s %s' % (self.first_name, self.last_name)
+    def get_basket(self):
+        return Basket()
 
 
 class AnonymousUserMixin(object):
@@ -19,3 +22,6 @@ class AnonymousUserMixin(object):
         return False
     def display_name(self):
         self.__unicode__()
+    def get_basket(self):
+        return Basket()
+
