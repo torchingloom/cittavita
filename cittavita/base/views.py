@@ -7,6 +7,10 @@ from ..shop import models as shop_models
 class HomeView(TemplateView):
     template_name = 'home.html'
     def get_context_data(self, **kwargs):
+
+        from .middleware.request import get_current_user
+        get_current_user().get_basket()
+
         shelf_width = 896 * 2
         shelfs = ()
         shelfs_num = 1
