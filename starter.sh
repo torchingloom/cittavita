@@ -13,4 +13,4 @@ echo '=== fill shop ===';
 
 echo ;
 echo ;
-./manage.py runserver 8002
+./run.sh
