@@ -39,7 +39,6 @@
  * @url http://ti.y1.ru/jquery/router/
  * @author Ti
  * @see $.history
- * @version 0.5.3
  */
 
 
@@ -248,19 +247,18 @@
 
 (function($, plugin) {
 	$[plugin] = function(key, callback, leave) {
-		initOnce()
 		var r
 		if (key instanceof RegExp) r = new RouterRegExp(key, callback, leave)
 		else if ('function' == typeof key) r = new RouterCallback(key, callback)
 		else if ('object' == typeof key) r = new RouterMap(key, callback)
 		else r = new RouterStatic(key, callback, leave)
 		list.push(r)
-		var hash = $[plugin].last()
+		var hash = $.router.last()
 		// если добавили с текущим хешом - запускаем
-		if (active && r.test(hash)) {
+		if (r.test(hash)) {
 			runLeave()
 			// извлекаем текущий хеш из истории
-			$[plugin].pop()
+			$.router.pop()
 			// запуск
 			runRouter(r)
 			// ложим обратно в историю
@@ -268,11 +266,6 @@
 		}
 		return $
 	}
-
-	var activeHashChangeCallback
-	var active = true
-	var lastHash = null
-
 	$[plugin] = $.extend($[plugin], {
 		hasHistory: function() {
 			return 0 < history.length
@@ -316,47 +309,12 @@
 
 			return $
 		},
-
-
-		stop: function() {
-			active = false
-			lastHash = null
-			return this
-		},
-
-
-		start: function() {
-			active = true
-			jQueryHistoryInitOnce()
-			jQueryHistoryHashChangeCallback(location.hash.replace(/^#/, ''))
-			return this
-		},
 		
 		
 		leave: function(fn) {
 			if ('function' !== typeof fn) throw new Error('Invalid leave callback. Function required!')
 			leaveRouter = new RouterLeave(fn)
 			return $
-		},
-
-
-		newChangeCallback: function() {
-			activeHashChangeCallback = function(hash) {
-				if (active && lastHash !== hash && activeHashChangeCallback === arguments.callee) {
-					lastHash = hash
-					runLeave()
-					run(hash)
-				}
-			}
-			initOnce = function() {}
-			return activeHashChangeCallback
-		},
-
-
-		restoreChangeCallback: function() {
-			activeHashChangeCallback = jQueryHistoryHashChangeCallback
-			initOnce = jQueryHistoryInitOnce
-			if (list.length) initOnce()
 		}
 	})
 	
@@ -483,24 +441,14 @@
 	}
 
 	var leaveRouter
+	
+	var init = function() {
+		$.history.init(function(hash) {
+			runLeave()
+			run(hash)
+		})
+	}
 
-	var jQueryHistoryHashChangeCallback = $[plugin].newChangeCallback()
-	var jQueryHistoryInitOnce = (function() {
-		var isInitDone = false
-
-		var init = function() {
-			$.history.init(jQueryHistoryHashChangeCallback)
-		}
-
-		return function() {
-			if (isInitDone) return
-			if (jQueryHistoryHashChangeCallback !== activeHashChangeCallback) return
-
-			isInitDone = true
-			if ($.browser.msie) $(init)
-			else init()
-		}
-	})()
-
-	var initOnce = jQueryHistoryInitOnce
+	if ($.browser.msie) $(window).load(init)
+	else init()
 })(jQuery, 'router');
