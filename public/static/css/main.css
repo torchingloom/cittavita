@@ -398,10 +398,10 @@ BODY::before {
 	opacity: 0.3;
 	cursor: default;
 }
-.kauf {
+.basket-addbutton {
 	margin-bottom: 5px;
 }
-.kauf A {
+.basket-addbutton A {
 	display: block;
 	width: 175px;
 	height: 90px;
@@ -412,6 +412,11 @@ BODY::before {
 	text-indent: -9999px;
 	margin: auto;
 	background: url('/static/img/sprite.png') no-repeat;
+}
+.basket-loading {
+	width: 175px;
+	height: 90px;
+    background: url('/static/img/ajax-loader.gif') no-repeat 50px;
 }
 .tags {
 	margin-bottom: 13px;

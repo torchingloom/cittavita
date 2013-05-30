@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from django.contrib.auth.models import AnonymousUser
+from django.core.exceptions import ObjectDoesNotExist
 
 from ...base.helper.singleton import singleton
 from .. import models
@@ -8,22 +10,32 @@ from ...base.middleware.request import get_request, get_current_user
 class BasketException(BaseException):
     pass
 
+@singleton
 class Basket(object):
-    model = None
+    model = models.Basket
+    item_model = models.Item
+    user = None
+    session_key = None
+
     def __init__(self):
-        self.get_model_filtered_queryset()
-    def get_model_filtered_queryset(self):
-        raise BasketException('get_model_filtered_queryset not implemented')
+        self.user = get_current_user()
+        self.session_key = get_request().COOKIES.get('sessionid')
 
-@singleton
-class BasketAnonymous(Basket):
-    model = models.Basket_Anonymous
-    def get_model_filtered_queryset(self):
-        return self.model.objects.filter(session_id=get_request().session.session_key)
+    def add_item(self, item_pk, count=1):
+        item_in_basket = self.model()
+        item_in_basket.item = self.get_item_by_pk(item_pk)
+        if not item_in_basket.item:
+            return False
+        if not isinstance(self.user, AnonymousUser):
+            item_in_basket.user = self.user
+        item_in_basket.session_key = self.session_key
+        item_in_basket.count = count
+        item_in_basket.price_one = item_in_basket.item.price
+        item_in_basket.save()
+        return True
 
-
-@singleton
-class BasketUser(Basket):
-    model = models.Basket_User
-    def get_model_filtered_queryset(self):
-        return self.model.objects.filter(user=get_current_user())
+    def get_item_by_pk(self, item_pk):
+        try:
+            return self.item_model.objects.get(pk=item_pk)
+        except ObjectDoesNotExist:
+            return False

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import Image
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from sorl.thumbnail.shortcuts import get_thumbnail
 from cittavita.shop import item_image_border_filename_generate, item_image_filename_generate
@@ -93,24 +94,24 @@ class Item_Image(models.Model):
 
 class Basket(models.Model):
     item = models.ForeignKey(Item, null=False, on_delete=models.CASCADE, verbose_name=u'товар')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name=u'пользователь')
+    session_key = models.CharField(max_length=500, db_index=True, null=True, blank=True, verbose_name=u'идентификатор сессии')
     count = models.IntegerField(default=1, verbose_name=u'сколько штук')
     price_one = models.FloatField(verbose_name=u'цена')
     when = models.DateTimeField(auto_now=True, auto_now_add=True, db_index=True, verbose_name=u'когда')
     class Meta:
-        abstract = True
+        unique_together = ['item', 'user', 'session_key']
+        verbose_name = u'корзина'
+        verbose_name_plural = u'корзины'
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        if not self.user:
+            row = self.get_row_by_item_and_session_key()
+            if row:
+                self.pk = row.pk
+        return super(self.__class__, self).save(force_insert, force_update, using, update_fields)
 
-
-class Basket_Anonymous(Basket):
-    session_id = models.CharField(max_length=500, db_index=True, verbose_name=u'идентификатор сессии')
-    class Meta:
-        unique_together = ['item', 'session_id']
-        verbose_name = u'корзина неавторизованного'
-        verbose_name_plural = u'корзины неавторизованных'
-
-
-class Basket_User(Basket):
-    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE, verbose_name=u'пользователь')
-    class Meta:
-        unique_together = ['item', 'user']
-        verbose_name = u'корзина авторизованного'
-        verbose_name_plural = u'корзины авторизованных'
+    def get_row_by_item_and_session_key(self):
+        try:
+            return self.__class__.objects.get(item=self.item, session_key=self.session_key)
+        except ObjectDoesNotExist:
+            return False

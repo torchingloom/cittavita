@@ -22,8 +22,9 @@
 			{% if object.price_old and object.price_old != object.price %}<h2 class="price_old">{{ object.price_old }} руб.</h2>{% endif %}
 		</div>
         <div class="add-to-basket">
-            <p class="kauf"><a href="#" onclick="return basket.add(this, {{ content_type.id }}, {{ object.id }});">{{ button_text }}</a></p>
-            <div class="basket-added" style="display: none;">Товар уже в корзине</div>
+            <p class="basket-addbutton"><a href="#" onclick="return basket.add({{ object.pk }});">Купить</a></p>
+            <div class="basket-loading" style="display: none;"></div>
+            <div class="basket-added" style="display: none;">Товар в корзине</div>
         </div>
 
 {% if object.info %}

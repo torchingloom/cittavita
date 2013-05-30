@@ -108,8 +108,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.gzip.GZipMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 
     '%s.base.middleware.request.RequestMiddleware' % PROJECT_NAME,
 )
@@ -126,6 +127,8 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
+
+INTERNAL_IPS = ('127.0.0.1',)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -213,5 +216,5 @@ DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
     'HIDE_DJANGO_SQL': False,
     'TAG': 'div',
-    'ENABLE_STACKTRACES' : True
+    'ENABLE_STACKTRACES' : True,
 }
