@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+import formatter
 from django.contrib.auth.models import AnonymousUser
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Avg, Sum
+from django.utils.datastructures import SortedDict
 
 from ...base.helper.singleton import singleton
 from .. import models
@@ -20,6 +23,12 @@ class Basket(object):
     def __init__(self):
         self.user = get_current_user()
         self.session_key = get_request().COOKIES.get('sessionid')
+
+    def get_item_count(self):
+        return self.model.objects.filter(session_key=self.session_key).count()
+
+    def get_total_price(self):
+        return self.model.objects.extra(select={'total': 'SUM(count * price_one)'}, where=['session_key=%s'], params=[self.session_key]).values('total')[0].get('total') or 0
 
     def add_item(self, item_pk, count=1):
         item_in_basket = self.model()

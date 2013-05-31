@@ -28,7 +28,7 @@
 		<div class="basket-panel">
 
 <div id="basket-panel">
-    <div id="basket-summary">500 товаров на 100 тыщ</div>
+    <div id="basket-summary">{{ basket.get_item_count }} | {{ basket.get_total_price }} *|* {{ user.get_basket.get_item_count }}</div>
 </div>
 
         </div>

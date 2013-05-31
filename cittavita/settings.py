@@ -113,6 +113,7 @@ MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 
     '%s.base.middleware.request.RequestMiddleware' % PROJECT_NAME,
+    '%s.shop.middleware.Basket' % PROJECT_NAME,
 )
 
 
@@ -189,6 +190,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.core.context_processors.csrf',
     'django.contrib.messages.context_processors.messages',
+
+    '%s.shop.context_processor.basket' % PROJECT_NAME,
 )
 
 USE_BCRYPT = False

@@ -49,7 +49,7 @@ class Item(models.Model):
         if img:
             return get_thumbnail(img.image.path, '%s' % self.get_width(), format='PNG')
         return None
-    
+
     def get_absolute_url(self):
         return r'/#page1-item%s' % self.pk
 
