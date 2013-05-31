@@ -29,10 +29,10 @@ class Basket(object):
 
     def get_total_price(self):
         return self.model.objects.extra(
-            select={'total': 'SUM(count * price_one)'},
-            where=['session_key=%s'],
-            params=[self.session_key]).values('total'
-        )[0].get('total') \
+                select={'total': 'SUM(count * price_one)'},
+                where=['session_key=%s'],
+                params=[self.session_key]
+            ).values('total')[0].get('total') \
             or 0
 
     def add_item(self, item_pk, count=1):
