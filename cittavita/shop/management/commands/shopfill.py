@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from django.core.management.base import BaseCommand, CommandError
+import os
+import re
+import random
+
+from django.core.management.base import BaseCommand
+
 from cittavita.shop import models
 from cittavita.settings import MEDIA_ROOT
-import os, re, random
+
 
 class Command(BaseCommand):
     def handle(self, *args, **options):

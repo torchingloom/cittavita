@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-import Image
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from sorl.thumbnail.shortcuts import get_thumbnail
-from cittavita.shop import item_image_border_filename_generate, item_image_filename_generate
 from django.contrib.auth.models import User
+
+from cittavita.shop import item_image_border_filename_generate, item_image_filename_generate
 
 
 class Item(models.Model):

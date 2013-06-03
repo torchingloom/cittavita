@@ -26,10 +26,11 @@
 	<div id="container">
 		<div id="logo">Citta Vita</div>
 		<div class="basket-panel">
-
+{% comment %}
 <div id="basket-panel">
     <div id="basket-summary">{{ basket.get_item_count }} | {{ basket.get_total_price }} *|* {{ user.get_basket.get_item_count }}</div>
 </div>
+{% endcomment %}
 
         </div>
         <div id="storage">

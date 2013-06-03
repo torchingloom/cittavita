@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import os
 
 DEBUG = True
@@ -53,7 +52,7 @@ USE_I18N = True
 USE_L10N = True
 
 # If you set this to False, Django will not use timezone-aware datetimes.
-USE_TZ = True
+USE_TZ = False
 
 
 PUBLIC_ROOT = os.path.join(PROJECT_DIR, 'public')
@@ -109,8 +108,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 
     '%s.base.middleware.request.RequestMiddleware' % PROJECT_NAME,
     '%s.shop.middleware.Basket' % PROJECT_NAME,
@@ -220,4 +217,25 @@ DEBUG_TOOLBAR_CONFIG = {
     'HIDE_DJANGO_SQL': False,
     'TAG': 'div',
     'ENABLE_STACKTRACES' : True,
+}
+
+
+
+
+
+CACHE_COUNT_TIMEOUT = 60 * 60 * 60 * 24 * 365 #one year
+CACHE_EMPTY_QUERYSETS = True
+
+
+CACHEOPS_REDIS = {
+    'host': 'localhost',
+    'port': 6379,
+    'db': 2,
+    'socket_timeout': 3,
+}
+
+CACHEOPS = {
+    '*.*': ('get', 60*60),
+    '*.*': ('count', 60*60),
+    '*.*': ('all', 60*60),
 }
