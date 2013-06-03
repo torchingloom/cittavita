@@ -70,8 +70,8 @@
 		
 		// localization
 		localizedStrings : {
-			messageCloseWindow : 'Close Window',
-			messageAjaxLoader : 'Please wait',
+			messageCloseWindow : 'Закрыть',
+			messageAjaxLoader : 'Подождите секунду',
 			errorMessageIfNoDataAvailable : '<strong>No content available!</strong>',
 			errorMessageXMLHttpRequest : 'Error: XML-Http-Request Status "500"',
 			errorMessageTextStatusError : 'Error: AJAX Request failed',

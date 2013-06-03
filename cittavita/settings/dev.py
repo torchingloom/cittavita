@@ -6,5 +6,5 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 MIDDLEWARE_CLASSES += (
-    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
