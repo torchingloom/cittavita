@@ -1,1 +1,1 @@
-./manage.py runserver 8002
+./manage-dev.py runserver 8002

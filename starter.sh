@@ -4,12 +4,12 @@ echo '=== reseting db ===';
 echo ;
 echo ;
 echo '=== syncdb and migrate ===';
-./manage.py syncdb --migrate --noinput;
+./manage-dev.py syncdb --migrate --noinput;
 
 echo ;
 echo ;
 echo '=== fill shop ===';
-./manage.py shopfill;
+./manage-dev.py shopfill;
 
 echo ;
 echo ;
