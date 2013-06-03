@@ -11,3 +11,6 @@ WSGI_APPLICATION = '%s.wsgi.application' % PROJECT_NAME
 DATABASES['default']['NAME'] = 'atlantij_cittavita'
 DATABASES['default']['USER'] = DATABASES['default']['NAME']
 DATABASES['default']['PASSWORD'] = 'b36b888c'
+
+SESSION_ENGINE = 'redis_sessions.session'
+INSTALLED_APPS = INSTALLED_APPS + ('cacheops', )
