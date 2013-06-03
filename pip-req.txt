@@ -1,7 +1,6 @@
 django
 south
 message
-django-compressor
 django-utils
 django-debug-toolbar
 django-registration
