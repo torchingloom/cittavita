@@ -1,4 +1,5 @@
 {% load thumbnail %}
+{% load google_analytics %}
 {% spaceless %}
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -49,7 +50,7 @@
                             <!--[if lt IE 8]><table><td><![endif]-->
                                 <a class="openmodalbox_width" href="#page{{ shelf.num }}-item{{ item.pk }}" rel="{% url 'item-view' item.pk %}" id="item{{ item.pk }}">
                                     <img src="{{ item.get_front_thumb.url }}" width="{{ item.get_front_thumb.width }}" height="{{ item.get_front_thumb.height }}" class="item_picture" alt="{{ item }}" />
-                                    {% if item.get_image.border %}<img src="{{ item.get_image.border.image.url }}" class="item_border" />{% endif %}
+                                    {% if item.get_image.border %}<img src="{{ item.get_image.border.image.url }}" class="item_border" alt="{{ item }}" />{% endif %}
                                 </a>
                             <!--[if lt IE 8]></td></table><![endif]-->
                             </div>
@@ -85,7 +86,7 @@
 
 {% endblock content %}
 
-
+    {% google_counter %}
     <script src="{{ STATIC_URL }}js/jquery.js" type="text/javascript"></script>
     <script src="{{ STATIC_URL }}js/jquery.router.js" type="text/javascript"></script>
     <script src="{{ STATIC_URL }}js/jquery.cycle.js" type="text/javascript"></script>

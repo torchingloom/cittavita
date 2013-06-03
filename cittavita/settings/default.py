@@ -239,3 +239,6 @@ CACHEOPS = {
     '*.*': ('count', 60*60),
     '*.*': ('all', 60*60),
 }
+
+
+GOOGLE_ACCOUNT = 'UA-24587489-1'

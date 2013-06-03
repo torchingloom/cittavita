@@ -157,10 +157,10 @@ $(function(){
 
 	$('A.openmodalbox_width').click(function( e ){
 		e.preventDefault();
-		
 		initial = false;
 		
 		if (this.id) {
+            _gaq.push(['_trackEvent', 'Item', 'Click', $($(this).children()[0]).attr('alt')]);
 			var currSlide = storage.children().eq( storageData.currSlide );
 			if (currSlide.length) {
 				window.location.hash = currSlide.attr('id') + '-' + this.id
