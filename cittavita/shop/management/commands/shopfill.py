@@ -6,8 +6,8 @@ import random
 
 from django.core.management.base import BaseCommand
 
-from cittavita.shop import models
-from cittavita.settings import MEDIA_ROOT
+from ....shop import models
+from ....settings import MEDIA_ROOT
 
 
 class Command(BaseCommand):

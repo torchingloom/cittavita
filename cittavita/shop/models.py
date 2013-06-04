@@ -93,25 +93,24 @@ class Item_Image(models.Model):
 
 
 class Basket(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, unique=True, null=True, blank=True, verbose_name=u'пользователь')
+    session_key = models.CharField(max_length=500, unique=True, db_index=True, null=True, blank=True, verbose_name=u'идентификатор сессии')
+    when = models.DateTimeField(auto_now=True, auto_now_add=True, db_index=True, verbose_name=u'когда')
+    class Meta:
+        verbose_name = u'корзина'
+        verbose_name_plural = u'корзины'
+    def __unicode__(self):
+        return u'%s' % (self.user)
+
+class Basket_Item(models.Model):
+    basket = models.ForeignKey(Basket, null=False, on_delete=models.CASCADE, verbose_name=u'корзина')
     item = models.ForeignKey(Item, null=False, on_delete=models.CASCADE, verbose_name=u'товар')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name=u'пользователь')
-    session_key = models.CharField(max_length=500, db_index=True, null=True, blank=True, verbose_name=u'идентификатор сессии')
     count = models.IntegerField(default=1, verbose_name=u'сколько штук')
     price_one = models.FloatField(verbose_name=u'цена')
     when = models.DateTimeField(auto_now=True, auto_now_add=True, db_index=True, verbose_name=u'когда')
     class Meta:
-        unique_together = ['item', 'user', 'session_key']
+        unique_together = ['basket', 'item']
         verbose_name = u'корзина'
         verbose_name_plural = u'корзины'
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        if not self.user:
-            row = self.get_row_by_item_and_session_key()
-            if row:
-                self.pk = row.pk
-        return super(self.__class__, self).save(force_insert, force_update, using, update_fields)
-
-    def get_row_by_item_and_session_key(self):
-        try:
-            return self.__class__.objects.get(item=self.item, session_key=self.session_key)
-        except ObjectDoesNotExist:
-            return False
+    def __unicode__(self):
+        return u'%s — %s (%s)' % (self.basket, self.item.name, self.count)
