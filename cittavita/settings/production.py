@@ -1,4 +1,8 @@
 
+import os
+
+PROJECT_DIR = os.path.normpath(os.path.join(os.path.dirname(__file__), '..'))
+
 from default import *
 
 STATIC_ROOT = '/home/atlantij/webapps/cittavita_static'

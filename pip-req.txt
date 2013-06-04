@@ -9,5 +9,5 @@ django-extra-views
 sorl-thumbnail
 django-pure-pagination
 python-dateutil
-wadofstuff-django-serializers
 django-extensions
+django-compressor

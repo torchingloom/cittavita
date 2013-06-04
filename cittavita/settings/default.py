@@ -4,8 +4,16 @@ import os
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
-PROJECT_DIR = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', '..'))
+try:
+    if PROJECT_DIR:
+        pass
+except:
+    PROJECT_DIR = ''
+
+
 PROJECT_NAME = 'cittavita'
+
+print PROJECT_DIR
 
 ADMINS = (
     ('atlantij', 'atlantij@gmail.com'),

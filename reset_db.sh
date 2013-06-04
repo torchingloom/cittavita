@@ -1,1 +1,1 @@
-./manage-dev.py reset_db --router=default --noinput --verbosity=3
+./manage.py reset_db --router=default --noinput --verbosity=3
