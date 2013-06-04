@@ -5,8 +5,8 @@ from django.contrib import admin
 from django.contrib.auth.urls import urlpatterns
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from shop.views import HomeView, ItemAddToBasketView
-from shop.views import ItemView
+from .shop.views import HomeView, ItemAddToBasketView
+from .shop.views import ItemView
 
 
 admin.autodiscover()

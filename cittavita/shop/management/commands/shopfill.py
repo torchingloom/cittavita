@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import os
-import re
-import random
-
+import os, re, random
 from django.core.management.base import BaseCommand
-
 from ....shop import models
 from ....settings import MEDIA_ROOT
 

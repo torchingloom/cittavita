@@ -4,8 +4,7 @@ import os
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
-
-PROJECT_DIR = os.getcwd()
+PROJECT_DIR = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', '..'))
 PROJECT_NAME = 'cittavita'
 
 ADMINS = (
@@ -58,7 +57,6 @@ USE_TZ = False
 PUBLIC_ROOT = os.path.join(PROJECT_DIR, 'public')
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/var/www/example.com/media/"
 MEDIA_ROOT = os.path.join(PUBLIC_ROOT, 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
@@ -88,7 +86,6 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -143,7 +140,6 @@ INSTALLED_APPS = (
     'registration',
     'pure_pagination',
     'sorl.thumbnail',
-    'django_pickling',
     '%s.base' % PROJECT_NAME,
     '%s.shop' % PROJECT_NAME,
 )
@@ -240,5 +236,7 @@ CACHEOPS = {
     '*.*': ('all', 60*60),
 }
 
+REDIS_CLI_PATH = None
 
 GOOGLE_ACCOUNT = 'UA-24587489-1'
+
