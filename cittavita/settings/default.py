@@ -4,12 +4,7 @@ import os
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
-try:
-    if PROJECT_DIR:
-        pass
-except:
-    PROJECT_DIR = ''
-
+PROJECT_DIR = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 PROJECT_NAME = 'cittavita'
 
@@ -144,7 +139,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.formtools',
     'django_extensions',
-    'debug_toolbar',
     'south',
     'registration',
     'pure_pagination',
