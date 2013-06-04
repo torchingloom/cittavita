@@ -141,7 +141,6 @@ INSTALLED_APPS = (
     'django_extensions',
     'south',
     'registration',
-    'pure_pagination',
     'sorl.thumbnail',
     '%s.base' % PROJECT_NAME,
     '%s.shop' % PROJECT_NAME,

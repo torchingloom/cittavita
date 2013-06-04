@@ -7,7 +7,6 @@ django-registration
 django-staticfiles
 django-extra-views
 sorl-thumbnail
-django-pure-pagination
 python-dateutil
 django-extensions
 django-compressor
