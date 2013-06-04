@@ -2,7 +2,7 @@
 
 from django.db import models
 
-class StaticPage(models.Model):
+class Static_Page(models.Model):
     STATUS_CHOICES = (
         ('pending', u'На рассмотрении'),
         ('published', u'Опубликована')
