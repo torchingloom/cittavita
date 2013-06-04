@@ -9,5 +9,5 @@ from ..base.helper.user_mixin import UserMixin, AnonymousUserMixin
 
 signals.post_syncdb.disconnect(create_superuser, sender=auth_models, dispatch_uid="django.contrib.auth.management.create_superuser")
 
-monkey_mix(User, UserMixin)
-monkey_mix(AnonymousUser, AnonymousUserMixin)
+# monkey_mix(User, UserMixin)
+# monkey_mix(AnonymousUser, AnonymousUserMixin)
