@@ -8,8 +8,6 @@ PROJECT_DIR = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', '..
 
 PROJECT_NAME = 'cittavita'
 
-print PROJECT_DIR
-
 ADMINS = (
     ('atlantij', 'atlantij@gmail.com'),
 )
