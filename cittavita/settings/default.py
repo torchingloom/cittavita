@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 PROJECT_DIR = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -231,9 +231,9 @@ CACHEOPS_REDIS = {
 }
 
 CACHEOPS = {
-    '*.*': ('get', 60*60),
-    '*.*': ('count', 60*60),
-    '*.*': ('all', 60*60),
+    'shop.*': ('get', 60 * 60 * 24 * 365),
+    'shop.*': ('count', 60 * 60 * 24 * 365),
+    'shop.*': ('all', 60 * 60 * 24 * 365),
 }
 
 REDIS_CLI_PATH = None
