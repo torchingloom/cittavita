@@ -20,7 +20,7 @@ except ImportError:
 
 try:
     exec 'from %s import *' % ENV_NAME
-    print >> sys.stderr, bordered_msg(['Settings module `%s`!' % ENV_NAME])
+    print >> sys.stdout, bordered_msg(['Settings module `%s`!' % ENV_NAME])
 except ImportError:
     print >> sys.stderr, bordered_msg(['Settings module `%s` not found!' % ENV_NAME, 'Please, be careful and think twice'])
     exit()
