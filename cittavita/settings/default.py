@@ -226,7 +226,7 @@ CACHE_EMPTY_QUERYSETS = True
 CACHEOPS_REDIS = {
     'host': 'localhost',
     'port': 6379,
-    'db': 2,
+    'db': 1,
     'socket_timeout': 3,
 }
 

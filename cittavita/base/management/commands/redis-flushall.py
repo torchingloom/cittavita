@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import subprocess
+import subprocess, os
 from django.core.management.base import BaseCommand
 from ....settings import REDIS_CLI_PATH, ENV_NAME
 
@@ -17,4 +17,6 @@ class Command(BaseCommand):
             self.stdout.write('%s%s%s\n%s\n\n' % (bordersym, ' ' * (symscnt - 2), bordersym, bordersym * symscnt))
             return
         cmd = '%s -r 1 flushall' % REDIS_CLI_PATH
-        subprocess.call(cmd)
+        self.stdout.write('\nExec `%s`\n' % cmd)
+#        subprocess.call(cmd)
+        os.system(cmd)

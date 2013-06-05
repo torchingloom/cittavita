@@ -1,5 +1,8 @@
 from default import *
 
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+
 STATIC_ROOT = '/home/atlantij/webapps/cittavita_static'
 
 WSGI_APPLICATION = '%s.wsgi.application' % PROJECT_NAME
