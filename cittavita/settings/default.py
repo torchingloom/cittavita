@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 PROJECT_DIR = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', '..'))
