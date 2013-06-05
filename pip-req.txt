@@ -10,3 +10,4 @@ sorl-thumbnail
 python-dateutil
 django-extensions
 django-compressor
+django-cacheops
